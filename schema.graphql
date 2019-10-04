@@ -1,0 +1,32 @@
+type Query {
+  checkAvailableRooms(epochCheckInDt: Int!, epochCheckOutDt: Int!): [Rooms!]!
+  checkBookingDetails(personId: ID!): [BookingDetails!]!
+}
+
+type Mutation {
+  addRooms(numberOfRooms: Int!): [Rooms!]!
+  bookRoom(data: BookRoomInput!): Rooms!
+  cancelBookings(bookingId: ID!): BookingDetails!
+}
+
+input BookRoomInput {
+  roomId: ID!
+  epochCheckInDt: Int!
+  epochCheckOutDt: Int!
+  personName: String!
+  contactNumber: String!
+}
+
+type Rooms {
+  _id: ID!
+  name: String!
+  type: String!
+}
+
+type BookingDetails {
+  _id: ID!
+  personId: ID!
+  roomId: ID!
+  checkInDt: Int!
+  checkOutDt: Int!
+}
